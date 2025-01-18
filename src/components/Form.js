@@ -71,7 +71,7 @@ function Form({ lastId }) {
       createdAt: new Date().toISOString(),
     };
 
-    axios.post(
+    axios.put(
       `https://669b3f09276e45187d34eb4e.mockapi.io/api/v1/employee`,
       newEmployeeDetails
     );
@@ -101,7 +101,9 @@ function Form({ lastId }) {
 
   return (
     <div className="fluid-container vh-100 d-flex flex-column justify-content-center align-items-center">
-      <h1 className="text-center">{id ? "Update Employee" : "Create Employee"}</h1>
+      <h1 className="text-center">
+        {id ? "Update Employee" : "Create Employee"}
+      </h1>
       <form className="w-75 d-flex flex-column justify-content-center shadow rounded px-3 py-3">
         <div className="form-group row">
           <label className="">

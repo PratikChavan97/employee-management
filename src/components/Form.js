@@ -58,7 +58,7 @@ function Form({ lastId }) {
       !employee.state ||
       !employee.country
     )
-      return;
+      return alert("Fill all required fields carefully");
 
     const newEmployeeDetails = {
       name: employee.name,
@@ -103,14 +103,14 @@ function Form({ lastId }) {
       <h1 className="text-center">
         {id ? "Update Employee" : "Create Employee"}
       </h1>
-      <form className="w-75 d-flex flex-column justify-content-center shadow rounded px-3 py-3">
-        <div className="form-group row">
+      <form className="w-75 d-flex flex-column justify-content-center align-items-center shadow rounded px-3 py-3">
+        <div className="form-group row w-100">
           <label className="">
-            Name:
+            Name <span className="text-danger">*</span>:
             <input
               type="text"
               placeholder="Employee Name"
-              className="w-75 form-control mb-3 col"
+              className="w-75 form-control mb-3 col-6"
               value={employee.name}
               onChange={(e) =>
                 setEmployee({ ...employee, name: e.target.value })
@@ -120,9 +120,9 @@ function Form({ lastId }) {
           </label>
         </div>
 
-        <div className="form-group row">
+        <div className="form-group row w-100">
           <label>
-            Email:
+            Email <span className="text-danger">*</span>:
             <input
               type="email"
               placeholder="Email"
@@ -136,14 +136,14 @@ function Form({ lastId }) {
           </label>
         </div>
 
-        <div className="form-group row">
+        <div className="form-group row w-100">
           <label>
-            Mobile:
+            Mobile <span className="text-danger">*</span>:
             <input
               type="text"
+              required
               placeholder="Mobile"
               className="w-75 form-control mb-3 col"
-              required
               value={employee.mobile}
               onChange={(e) =>
                 setEmployee({ ...employee, mobile: e.target.value })
@@ -152,14 +152,13 @@ function Form({ lastId }) {
           </label>
         </div>
 
-        <div className="form-group row">
+        <div className="form-group row w-100">
           <label>
             Image:
             <input
               type="url"
               placeholder="Profile Image"
               className="w-75 form-control mb-3 col"
-              required={true}
               value={employee.avatar}
               onChange={(e) =>
                 setEmployee({ ...employee, avatar: e.target.value })
@@ -168,14 +167,13 @@ function Form({ lastId }) {
           </label>
         </div>
 
-        <div className="form-group row">
+        <div className="form-group row w-100">
           <label>
             District:
             <input
               type="text"
               placeholder="District"
               className="w-75 form-control mb-3 col"
-              required
               value={employee.district}
               onChange={(e) =>
                 setEmployee({ ...employee, district: e.target.value })
@@ -184,14 +182,13 @@ function Form({ lastId }) {
           </label>
         </div>
 
-        <div className="form-group row">
+        <div className="form-group row w-100 ">
           <label>
             State:
             <input
               type="text"
               placeholder="State"
               className="w-75 form-control mb-3 col"
-              required
               value={employee.state}
               onChange={(e) =>
                 setEmployee({ ...employee, state: e.target.value })
@@ -200,7 +197,7 @@ function Form({ lastId }) {
           </label>
         </div>
 
-        <div className="form-group row">
+        <div className="form-group row w-100">
           <label>
             Country:
             {isLoading ? (
@@ -209,7 +206,6 @@ function Form({ lastId }) {
               <select
                 className="w-75 form-control mb-3 col"
                 value={employee.country}
-                required
                 onChange={(e) =>
                   setEmployee({ ...employee, country: e.target.value })
                 }
@@ -227,9 +223,9 @@ function Form({ lastId }) {
           </label>
         </div>
 
-        <div className="d-flex justify-content-start gap-5">
+        <div className="w-100 d-flex justify-content-start gap-5">
           <button
-            className="btn w-25 btn-success"
+            className="btn btn-success w-25"
             onClick={(e) => (id ? handleUpdate(e) : handleAdd(e))}
           >
             {id ? "Update" : "Create"}

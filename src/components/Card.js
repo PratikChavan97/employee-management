@@ -120,7 +120,7 @@ function Card() {
                   </ButtonLink>
 
                   <ButtonLink path="/" classes="btn btn-primary">
-                    Back
+                    &larr; Back
                   </ButtonLink>
                 </div>
               </div>

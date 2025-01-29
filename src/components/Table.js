@@ -1,6 +1,6 @@
 import TableContent from "./TableContent";
 
-function Table({ queryData, found }) {
+function Table({ queryData }) {
   return (
     <table className="table table-striped">
       <thead>
@@ -12,15 +12,12 @@ function Table({ queryData, found }) {
           <th>Actions</th>
         </tr>
       </thead>
-      {found ? (
-        <tbody>
-          {queryData.map((item, i) => {
-            return <TableContent item={item} index={i} key={item.id} />;
-          })}
-        </tbody>
-      ) : (
-        <p>No results found...</p>
-      )}
+
+      <tbody>
+        {queryData.map((item, i) => {
+          return <TableContent item={item} index={i} key={item.id} />;
+        })}
+      </tbody>
     </table>
   );
 }

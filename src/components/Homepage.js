@@ -8,7 +8,6 @@ function Homepage({ setLastId }) {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [query, setQuery] = useState("");
-  const [found, setFound] = useState(true);
 
   let queryData;
   if (query) {
@@ -37,23 +36,15 @@ function Homepage({ setLastId }) {
 
   function handleQuery(id) {
     setQuery(id);
-    setFound((found) =>
-      data.map((item) => (Number(item.id) === Number(query) ? true : false))
-    );
   }
 
-  console.log(found);
   return (
     <div className="d-flex flex-column justify-content-center align-items-center bg-light w-100">
       <>
         <Header query={query} handleQuery={handleQuery} />
 
         <div className="w-100 rounded bg-white border shadow p-4">
-          {isLoading ? (
-            <Loader />
-          ) : (
-            <Table queryData={queryData} found={found} />
-          )}
+          {isLoading ? <Loader /> : <Table queryData={queryData} />}
         </div>
       </>
     </div>

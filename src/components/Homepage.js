@@ -39,14 +39,18 @@ function Homepage({ setLastId }) {
   }
 
   return (
-    <div className="d-flex flex-column justify-content-center align-items-center bg-light w-100">
-      <>
-        <Header query={query} handleQuery={handleQuery} />
+    <div className="row w-100">
+      <div className="col-md-1"></div>
+      <div className="d-flex flex-column justify-content-center align-items-center bg-light col-md-10">
+        <>
+          <Header query={query} handleQuery={handleQuery} />
 
-        <div className="w-75 rounded bg-white border shadow p-4">
-          {isLoading ? <Loader /> : <Table queryData={queryData} />}
-        </div>
-      </>
+          <div className="w-100 rounded bg-white border shadow p-4">
+            {isLoading ? <Loader /> : <Table queryData={queryData} />}
+          </div>
+        </>
+      </div>
+      <div className="col-md-1"></div>
     </div>
   );
 }

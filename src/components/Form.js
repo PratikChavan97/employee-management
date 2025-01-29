@@ -14,11 +14,10 @@ function Form({ lastId }) {
     state: "",
     country: "",
     createdAt: "",
+    avatar: "",
   });
 
   const [countries, setCountries] = useState([]);
-
-  console.log(employee);
 
   const navigate = useNavigate();
   const { id } = useParams();
@@ -71,7 +70,7 @@ function Form({ lastId }) {
       createdAt: new Date().toISOString(),
     };
 
-    axios.put(
+    axios.post(
       `https://669b3f09276e45187d34eb4e.mockapi.io/api/v1/employee`,
       newEmployeeDetails
     );
@@ -112,11 +111,11 @@ function Form({ lastId }) {
               type="text"
               placeholder="Employee Name"
               className="w-75 form-control mb-3 col"
-              required
               value={employee.name}
               onChange={(e) =>
                 setEmployee({ ...employee, name: e.target.value })
               }
+              required
             />
           </label>
         </div>
@@ -148,6 +147,22 @@ function Form({ lastId }) {
               value={employee.mobile}
               onChange={(e) =>
                 setEmployee({ ...employee, mobile: e.target.value })
+              }
+            />
+          </label>
+        </div>
+
+        <div className="form-group row">
+          <label>
+            Image:
+            <input
+              type="url"
+              placeholder="Profile Image"
+              className="w-75 form-control mb-3 col"
+              required={true}
+              value={employee.avatar}
+              onChange={(e) =>
+                setEmployee({ ...employee, avatar: e.target.value })
               }
             />
           </label>
@@ -199,6 +214,7 @@ function Form({ lastId }) {
                   setEmployee({ ...employee, country: e.target.value })
                 }
               >
+                <option value="">Select your country</option>
                 {countries.map((country) => {
                   return (
                     <option key={country.id} value={country.country}>
@@ -226,7 +242,7 @@ function Form({ lastId }) {
               navigate(-1);
             }}
           >
-            Back
+            &larr; Back
           </button>
         </div>
       </form>

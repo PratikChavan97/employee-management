@@ -1,7 +1,6 @@
 import ButtonLink from "./ButtonLink";
 
 function TableContent({ item, index }) {
-  console.log(item.avatar);
   return (
     <tr>
       <td>{index + 1}</td>

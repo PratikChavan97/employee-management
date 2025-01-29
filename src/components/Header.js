@@ -1,10 +1,7 @@
-import { useState } from "react";
 import ButtonLink from "./ButtonLink";
 import { useNavigate } from "react-router-dom";
 
-function Header() {
-  const [query, setQuery] = useState("");
-
+function Header({ query, handleQuery }) {
   const navigate = useNavigate();
 
   function handleSearch() {
@@ -23,7 +20,7 @@ function Header() {
             placeholder="search by id"
             className="form-control"
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={(e) => handleQuery(e.target.value)}
           />
           <button className="btn btn-outline-primary" onClick={handleSearch}>
             Search

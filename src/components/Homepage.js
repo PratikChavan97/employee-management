@@ -7,6 +7,15 @@ import Loader from "./Loader";
 function Homepage({ setLastId }) {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [query, setQuery] = useState("");
+  const [found, setFound] = useState(true);
+
+  let queryData;
+  if (query) {
+    queryData = data.filter((item) => item.id === query);
+  } else {
+    queryData = data;
+  }
 
   useEffect(() => {
     async function getEmployees() {
@@ -26,18 +35,27 @@ function Homepage({ setLastId }) {
     getEmployees();
   }, [setLastId]);
 
+  function handleQuery(id) {
+    setQuery(id);
+    setFound((found) =>
+      data.map((item) => (Number(item.id) === Number(query) ? true : false))
+    );
+  }
+
+  console.log(found);
   return (
     <div className="d-flex flex-column justify-content-center align-items-center bg-light w-100">
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <>
-          <Header />
-          <div className="w-100 rounded bg-white border shadow p-4">
-            <Table data={data} />
-          </div>
-        </>
-      )}
+      <>
+        <Header query={query} handleQuery={handleQuery} />
+
+        <div className="w-100 rounded bg-white border shadow p-4">
+          {isLoading ? (
+            <Loader />
+          ) : (
+            <Table queryData={queryData} found={found} />
+          )}
+        </div>
+      </>
     </div>
   );
 }

@@ -3,11 +3,16 @@ import Header from "./Header";
 import Table from "./Table";
 import axios from "axios";
 import Loader from "./Loader";
+import Pagination from "../features/Pagination";
 
 function Homepage({ setLastId }) {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [query, setQuery] = useState("");
+
+  // PAGINATION
+  const [entriesPerPage, setEntriesPerPage] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
 
   let queryData;
   if (query) {
@@ -38,16 +43,26 @@ function Homepage({ setLastId }) {
     setQuery(id);
   }
 
+  const lastIndex = currentPage * entriesPerPage;
+  const firstIndex = lastIndex - entriesPerPage;
+
+  queryData = queryData.slice(firstIndex, lastIndex);
+
   return (
-    <div className="row w-100">
+    <div className="row">
       <div className="col-md-1"></div>
-      <div className="d-flex flex-column justify-content-center align-items-center bg-light col-md-10">
+      <div className="bg-light col-md-10">
         <>
           <Header query={query} handleQuery={handleQuery} />
 
-          <div className="w-100 rounded bg-white border shadow p-4">
+          <div className="rounded bg-white border shadow p-4">
             {isLoading ? <Loader /> : <Table queryData={queryData} />}
           </div>
+          <Pagination
+            total={data.length}
+            entriesPerPage={entriesPerPage}
+            setCurrentPage={setCurrentPage}
+          />
         </>
       </div>
       <div className="col-md-1"></div>

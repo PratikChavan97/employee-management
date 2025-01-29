@@ -1,6 +1,6 @@
 import TableContent from "./TableContent";
 
-function Table({ queryData }) {
+function Table({ query, queryData }) {
   return (
     <table className="table table-striped">
       <thead>

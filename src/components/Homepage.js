@@ -11,8 +11,8 @@ function Homepage({ setLastId }) {
   const [query, setQuery] = useState("");
 
   // PAGINATION
-  const [entriesPerPage, setEntriesPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
+  const entriesPerPage = 10;
 
   let queryData;
   if (query) {
@@ -56,7 +56,11 @@ function Homepage({ setLastId }) {
           <Header query={query} handleQuery={handleQuery} />
 
           <div className="rounded bg-white border shadow p-4">
-            {isLoading ? <Loader /> : <Table queryData={queryData} />}
+            {isLoading ? (
+              <Loader />
+            ) : (
+              <Table query={query} queryData={queryData} />
+            )}
           </div>
           <Pagination
             total={data.length}

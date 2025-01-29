@@ -5,7 +5,7 @@ function Header({ query, handleQuery }) {
   const navigate = useNavigate();
 
   function handleSearch() {
-    if (!query) return;
+    if (!query) return alert("Please enter valid ID");
     navigate(`view/${query}`);
   }
 

@@ -17,7 +17,7 @@ function Header({ query, handleQuery }) {
         <div className="d-flex justify-content-around gap-2">
           <input
             type="search"
-            placeholder="search by id"
+            placeholder="Search by ID"
             className="form-control"
             value={query}
             onChange={(e) => handleQuery(e.target.value)}

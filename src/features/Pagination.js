@@ -9,7 +9,7 @@ function Pagination({ total, entriesPerPage, setCurrentPage }) {
       {pages.map((page) => (
         <button
           key={page}
-          className="border border-info rounded"
+          className="btn btn-sm btn-primary rounded"
           onClick={() => setCurrentPage(page)}
         >
           {page}

@@ -43,7 +43,7 @@ function Homepage({ setLastId }) {
       <>
         <Header query={query} handleQuery={handleQuery} />
 
-        <div className="w-100 rounded bg-white border shadow p-4">
+        <div className="w-75 rounded bg-white border shadow p-4">
           {isLoading ? <Loader /> : <Table queryData={queryData} />}
         </div>
       </>

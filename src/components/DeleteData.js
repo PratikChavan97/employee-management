@@ -7,7 +7,6 @@ function DeleteData() {
   const [confirm, setConfirm] = useState(false);
   const navigate = useNavigate();
 
-  console.log(confirm);
   useEffect(() => {
     if (id && confirm) {
       axios.delete(
@@ -17,7 +16,7 @@ function DeleteData() {
   }, [id, confirm]);
 
   function handleConfirmYes() {
-    setConfirm((confirm) => !confirm);
+    setConfirm(true);
     navigate("/");
   }
 
